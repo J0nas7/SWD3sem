@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IContactService {
 
-    List<Contact> fetchAllContacts;
+    //List<Contact> fetchAllContacts;
     Contact fetchOneContact(int id);
     Contact createContact(Contact c);
     void deleteContact(int id);

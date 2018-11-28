@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<a href="/crmforside">Se alle kontakter</a>
+<a href="/newContact">Opret ny kontakt</a>
 
-<input type="text" name="Username">
-<input type="text" name="Password">
-<input type="submit" value="Login">
+<p th:each="contact :${contacts}">
+    <span th:text="${contact.FirstName}" />
+    <span th:text="${contact.FirstName}" />
+    <span th:text="${contact.LastName}" />
+    <span th:text="${contact.NickName}" />
+    <span th:text="${contact.Email}" />
+    <span th:text="${contact.Phone}" />
+    <span th:text="${contact.CVR}" />
+    <span th:text="${contact.DOB}" />
+    <span th:text="${contact.Adress1}" />
+    <span th:text="${contact.Adress2}" />
+    <span th:text="${contact.City}" />
+    <span th:text="${contact.PostalCode}" />
+    <span th:text="${contact.Country}" />
+    <span th:text="${contact.Website}" />
+    <span th:text="${contact.Facebook}" />
+    <span th:text="${contact.Trello}" />
+    <span th:text="${contact.GitHub}" />
+    <span th:text="${contact.Gmail}" />
+</p>
+
+<form action="/newContact" method="post">
+    <input type="text" name="FirstName">
+    <input type="text" name="LastName">
+    <input type="submit" name="Opret ny">
+</form>
+<p></p>
+<a href="/crmforside">Se alle kontakter</a>
+
 
 </body>
 </html>

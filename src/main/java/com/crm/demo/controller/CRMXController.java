@@ -1,6 +1,8 @@
 package com.crm.demo.controller;
 
+import com.crm.demo.CrmAppApplication;
 import com.crm.demo.model.Contact;
+import com.crm.demo.model.UserInfo;
 import com.crm.demo.service.IContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,31 +21,32 @@ public class CRMXController {
     IContactService contactService;
 
     @GetMapping("/")
-    public String index(){
-
-        return "index";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam String username, String password, Model model){
-        Boolean login = false;
-
-        System.out.println(username + " " + password);
-        if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("1234")){
-            System.out.println("Login success");
-            return "redirect:/crmforside";
-        }
-        else
-        {
+    public String index(Model model) {
+        if (UserInfo.isLoggedIn) {
+            model.addAttribute("contacts", contactService.fetchAllContacts());
+            return "/crmforside";
+        } else {
+            model.addAttribute("loginError", UserInfo.loginError);
             return "/login";
         }
     }
 
-    @GetMapping("/crmforside")
-    public String crmforside(Model model){
-        model.addAttribute("contacts", contactService.fetchAllContacts());
+    @GetMapping("/logout")
+    public String logout() {
+        UserInfo.logout();
+        return "redirect:/";
+    }
 
-        return "/crmforside";
+    @PostMapping("/login")
+    public String login(@RequestParam String username, String password, Model model){
+        System.out.println(username + " " + password);
+        boolean login = UserInfo.checkLogin(username, password);
+        if (login) {
+            System.out.println("Login success");
+            return "redirect:/";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/newContact")
@@ -52,7 +55,7 @@ public class CRMXController {
         contactService.createContact(contact);
         System.out.println("hej");
         System.out.println(contact.getFirstName() + " " + contact.getLastName());
-        return "redirect:/crmforside";
+        return "redirect:/";
     }
 
 //    @GetMapping("/newContact")

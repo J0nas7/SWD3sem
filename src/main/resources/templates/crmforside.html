@@ -7,6 +7,7 @@
 <body>
 <a href="/crmforside">Se alle kontakter</a>
 <a href="/newContact">Opret ny kontakt</a>
+<a href="/logout">Log ud</a>
 
 <p th:each="contact :${contacts}">
     <span th:text="${contact.FirstName}" />
@@ -32,7 +33,7 @@
 <form action="/newContact" method="post">
     <input type="text" name="FirstName">
     <input type="text" name="LastName">
-    <input type="submit" name="Opret ny">
+    <input type="submit" value="Opret ny">
 </form>
 <p></p>
 <a href="/crmforside">Se alle kontakter</a>

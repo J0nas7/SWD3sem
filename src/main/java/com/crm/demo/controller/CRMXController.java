@@ -1,6 +1,5 @@
 package com.crm.demo.controller;
 
-import com.crm.demo.CrmAppApplication;
 import com.crm.demo.model.Contact;
 import com.crm.demo.model.UserInfo;
 import com.crm.demo.service.IContactService;
@@ -11,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import com.crm.demo.controller.DatabaseControllerSingleton;
 
 @Controller
 public class CRMXController {
+
+    public static DatabaseControllerSingleton DBconn = DatabaseControllerSingleton.GetInstance();
 
     @Autowired
     IContactService contactService;

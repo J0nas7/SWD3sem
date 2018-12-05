@@ -12,7 +12,7 @@ public class DatabaseControllerSingleton {
     private static String DBuser = "";
     private static String DBpassword = "";
     private static String DBurl = "jdbc:mysql://mysql29.unoeuro.com/" + DBdatabase + "?user=" + DBuser + "&password=" + DBpassword + "&useSSL=false&serverTimezone=UTC";
-    public static String DBprefix = "OneToMany_";
+    public static String DBprefix = "CRM_";
 
     // Database configuration start
     private DatabaseControllerSingleton() {

@@ -9,26 +9,36 @@
 <a href="/newContact">Opret ny kontakt</a>
 <a href="/logout">Log ud</a>
 
-<p th:each="contact :${contacts}">
-    <span th:text="${contact.FirstName}" />
-    <span th:text="${contact.FirstName}" />
-    <span th:text="${contact.LastName}" />
-    <span th:text="${contact.NickName}" />
-    <span th:text="${contact.Email}" />
-    <span th:text="${contact.Phone}" />
-    <span th:text="${contact.CVR}" />
-    <span th:text="${contact.DOB}" />
-    <span th:text="${contact.Adress1}" />
-    <span th:text="${contact.Adress2}" />
-    <span th:text="${contact.City}" />
-    <span th:text="${contact.PostalCode}" />
-    <span th:text="${contact.Country}" />
-    <span th:text="${contact.Website}" />
-    <span th:text="${contact.Facebook}" />
-    <span th:text="${contact.Trello}" />
-    <span th:text="${contact.GitHub}" />
-    <span th:text="${contact.Gmail}" />
-</p>
+<table cellspacing="5" cellpadding="5" border="1">
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th colspan="15">Andre felter...</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="contact: ${contacts}">
+            <td th:text="${contact.FirstName}" />
+            <td th:text="${contact.LastName}" />
+            <td th:text="${contact.NickName}" />
+            <td th:text="${contact.Email}" />
+            <td th:text="${contact.Phone}" />
+            <td th:text="${contact.CVR}" />
+            <td th:text="${contact.DOB}" />
+            <td th:text="${contact.Adress1}" />
+            <td th:text="${contact.Adress2}" />
+            <td th:text="${contact.City}" />
+            <td th:text="${contact.PostalCode}" />
+            <td th:text="${contact.Country}" />
+            <td th:text="${contact.Website}" />
+            <td th:text="${contact.Facebook}" />
+            <td th:text="${contact.Trello}" />
+            <td th:text="${contact.GitHub}" />
+            <td th:text="${contact.Gmail}" />
+        </tr>
+    </tbody>
+</table>
 
 <form action="/newContact" method="post">
     <input type="text" name="FirstName">

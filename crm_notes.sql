@@ -1,0 +1,1 @@
+CREATE TABLE `sorom_dk_db2`.`CRM_Notes` ( `Note_ID` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT , `Note_Subject` VARCHAR(255) NOT NULL , `Note_Content` TEXT NOT NULL , `Note_Customer_fk` INT(8) NOT NULL , `Note_Timestamp` INT(20) NOT NULL , `Note_Status` INT(1) NOT NULL , PRIMARY KEY (`Note_ID`)) ENGINE = InnoDB;

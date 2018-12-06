@@ -6,13 +6,13 @@ public class Note {
     private String Note_Subject;
     private String Note_Content;
     private int Note_Customer_fk;
-    private int Note_Timestamp;
+    private String Note_Timestamp;
     private int Note_Status;
 
     public Note() {
     }
 
-    public Note(int note_ID, int note_AL_index, String note_Subject, String note_Content, int note_Customer_fk, int note_Timestamp, int note_Status) {
+    public Note(int note_ID, int note_AL_index, String note_Subject, String note_Content, int note_Customer_fk, String note_Timestamp, int note_Status) {
         Note_ID = note_ID;
         Note_AL_index = note_AL_index;
         Note_Subject = note_Subject;
@@ -62,11 +62,11 @@ public class Note {
         Note_Customer_fk = note_Customer_fk;
     }
 
-    public int getNote_Timestamp() {
+    public String getNote_Timestamp() {
         return Note_Timestamp;
     }
 
-    public void setNote_Timestamp(int note_Timestamp) {
+    public void setNote_Timestamp(String note_Timestamp) {
         Note_Timestamp = note_Timestamp;
     }
 

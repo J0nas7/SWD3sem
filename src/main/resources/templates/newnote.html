@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/template :: Head (pageTitle=${'Kundeside: ' + customer.FirstName + ' ' + customer.LastName})"></head>
+<body>
+    <nav th:replace="fragments/template :: Topmenu (activeMenuItem=${'custsingle'})"></nav>
+
+    <h1 th:text="${'Kundeside: ' + customer.FirstName + ' ' + customer.LastName}"></h1>
+    <a th:href="${'/custview/' + customer.Id}" class="btn greyBtn">&laquo; Gå tilbage</a>
+
+    <form th:action="${'/newnote/' + customer.Id}" method="post" style="clear: both;">
+        <strong><br>NY NOTE:<br></strong>
+        Titel: <input type="text" name="Note_Subject" placeholder="Notens titel" /><br>
+        Indhold:<br>
+        <textarea name="Note_Content" style="width: 33%;height: 200px;"></textarea>
+        <br><br><input type="submit" value="Opret note" />
+    </form>
+</body>
+</html>

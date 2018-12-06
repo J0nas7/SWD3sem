@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/template :: Head (pageTitle=${'Alle kontakter'})"></head>
 <body>
-<a href="/crmforside">Se alle kontakter</a>
-<a href="/newContact">Opret ny kontakt</a>
-<a href="/logout">Log ud</a>
+<nav th:replace="fragments/template :: Topmenu (activeMenuItem=${'index'})"></nav>
 
 <table cellspacing="5" cellpadding="5" border="1">
     <thead>
@@ -46,15 +41,5 @@
         window.location.href = "/custview/"+CustomerID;
     }
 </script>
-
-<form action="/newContact" method="post">
-    <input type="text" name="FirstName">
-    <input type="text" name="LastName">
-    <input type="submit" value="Opret ny">
-</form>
-<p></p>
-<a href="/crmforside">Se alle kontakter</a>
-
-
 </body>
 </html>

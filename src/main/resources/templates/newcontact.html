@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Opret ny kontakt</title>
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/template :: Head (pageTitle=${'Opret kontakt'})"></head>
 <body>
+<nav th:replace="fragments/template :: Topmenu (activeMenuItem=${'newcontact'})"></nav>
 
 <form action="/newContact" method="post">
     <input type="text" name="FirstName">
     <input type="text" name="LastName">
-    <input type="submit" name="contact">
+    <input type="submit" value="Opret kontakt">
 </form>
 </body>
 </html>

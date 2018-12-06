@@ -1,0 +1,38 @@
+*, html {
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.btn.greyBtn {
+    background: #ddd;
+    border: 1px #bbb solid;
+    display: block;
+    width: auto;
+    float: left;
+    color: #333;
+    padding: 3px 5px;
+    text-decoration: none;
+}
+
+.topmenu {
+    width: 100%;
+    background: #cdcdcd;
+    border-bottom: 2px #ababab solid;
+    height: 34px;
+    margin-bottom: 35px;
+}
+
+.topmenu .item {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    float: left;
+    padding: 8px 16px;
+}
+
+.topmenu .item.active, .topmenu .item:hover {
+    background: #bbb;
+}
+.topmenu .item.active { font-weight: bold; }

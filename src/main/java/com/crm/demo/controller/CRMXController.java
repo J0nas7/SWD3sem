@@ -1,16 +1,16 @@
 package com.crm.demo.controller;
 
 import com.crm.demo.model.Contact;
+import com.crm.demo.model.Note;
 import com.crm.demo.model.UserInfo;
 import com.crm.demo.service.IContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import com.crm.demo.controller.DatabaseControllerSingleton;
+
+import java.sql.SQLException;
 
 @Controller
 public class CRMXController {
@@ -39,17 +39,6 @@ public class CRMXController {
         }
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        UserInfo.logout();
-        return "redirect:/";
-    }
-
-    @GetMapping("/custview/{custId}")
-    public String custview() {
-        return UserInfoCheck("/crmforside");
-    }
-
     @PostMapping("/login")
     public String login(@RequestParam String username, String password, Model model){
         System.out.println(username + " " + password);
@@ -60,6 +49,38 @@ public class CRMXController {
         } else {
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        UserInfo.logout();
+        return "redirect:/";
+    }
+
+    @GetMapping("/custview/{custId}")
+    public String custview(@PathVariable("custId") int custId, Model model) {
+        model.addAttribute("customer", contactService.fetchOneContact(custId));
+        return UserInfoCheck("/custsingleview");
+    }
+
+    @GetMapping("/newnote/{custId}")
+    public String newnote(@PathVariable("custId") int custId, Model model) {
+        model.addAttribute("customer", contactService.fetchOneContact(custId));
+        return UserInfoCheck("/newnote");
+    }
+
+    @PostMapping("/newnote/{custId}")
+    public String newnote(@PathVariable("custId") int custId, @ModelAttribute Note note, Model model) throws SQLException {
+        if (UserInfo.isLoggedIn) {
+            note.setNote_Customer_fk(custId);
+            contactService.createNote(note);
+        }
+        return "redirect:/custview/"+custId;
+    }
+
+    @GetMapping("/newContact")
+    public String createnew() {
+        return UserInfoCheck("/newcontact");
     }
 
     @PostMapping("/newContact")

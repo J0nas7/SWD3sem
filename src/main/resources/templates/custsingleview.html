@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/template :: Head (pageTitle=${'Kundeside: ' + customer.FirstName + ' ' + customer.LastName})"></head>
+<body>
+    <nav th:replace="fragments/template :: Topmenu (activeMenuItem=${'custsingle'})"></nav>
+
+    <a href="/" class="btn greyBtn">&laquo; Alle kunder</a>
+    <h1 style="clear: both;" th:text="${'Kundeside: ' + customer.FirstName + ' ' + customer.LastName}"></h1>
+    <a th:href="${'/newnote/' + customer.Id}" class="btn greyBtn">+ Ny note</a>
+</body>
+</html>

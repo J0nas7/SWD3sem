@@ -20,6 +20,14 @@ public class CRMXController {
     @Autowired
     IContactService contactService;
 
+    public String UserInfoCheck(String template) {
+        if (UserInfo.isLoggedIn) {
+            return template;
+        } else {
+            return "redirect:/";
+        }
+    }
+
     @GetMapping("/")
     public String index(Model model) {
         if (UserInfo.isLoggedIn) {
@@ -37,6 +45,11 @@ public class CRMXController {
         return "redirect:/";
     }
 
+    @GetMapping("/custview/{custId}")
+    public String custview() {
+        return UserInfoCheck("/crmforside");
+    }
+
     @PostMapping("/login")
     public String login(@RequestParam String username, String password, Model model){
         System.out.println(username + " " + password);
@@ -50,21 +63,13 @@ public class CRMXController {
     }
 
     @PostMapping("/newContact")
-    public String createnew(@ModelAttribute Contact contact, Model model){
-        model.addAttribute("contact", contact);
-        contactService.createContact(contact);
-        System.out.println("hej");
-        System.out.println(contact.getFirstName() + " " + contact.getLastName());
+    public String createnew(@ModelAttribute Contact contact, Model model) {
+        if (UserInfo.isLoggedIn) {
+            model.addAttribute("contact", contact);
+            contactService.createContact(contact);
+            System.out.println("hej");
+            System.out.println(contact.getFirstName() + " " + contact.getLastName());
+        }
         return "redirect:/";
     }
-
-//    @GetMapping("/newContact")
-//    public String createnew(@ModelAttribute Contact contact, Model model){
-//            model.addAttribute("contact", contact);
-//        return "newcontact";
-//    }
-
-
-
-
 }

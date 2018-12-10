@@ -60,6 +60,7 @@ public class CRMXController {
     @GetMapping("/custview/{custId}")
     public String custview(@PathVariable("custId") int custId, Model model) {
         model.addAttribute("customer", contactService.fetchOneContact(custId));
+        model.addAttribute("numNotes", contactService.readCustNotesSize(custId));
         return UserInfoCheck("/custsingleview");
     }
 
@@ -76,6 +77,22 @@ public class CRMXController {
             contactService.createNote(note);
         }
         return "redirect:/custview/"+custId;
+    }
+
+    @GetMapping("/readnotes/{custId}")
+    public String readnotes(@PathVariable("custId") int custId, Model model) {
+        model.addAttribute("customer", contactService.fetchOneContact(custId));
+        model.addAttribute("custNotes", contactService.readCustNotes(custId));
+        return UserInfoCheck("/readnotes");
+    }
+
+    @GetMapping("/deletenote/{Note_AL_index}")
+    public String deleteNote(@PathVariable("Note_AL_index") int Note_AL_index) throws SQLException {
+        int CustomerId = 0;
+        if (UserInfo.isLoggedIn) {
+            CustomerId = contactService.deleteNote(Note_AL_index);
+        }
+        return "redirect:/readnotes/"+CustomerId;
     }
 
     @GetMapping("/newContact")

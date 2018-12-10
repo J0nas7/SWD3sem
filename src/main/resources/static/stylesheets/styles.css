@@ -5,15 +5,19 @@
     padding: 0;
 }
 
-.btn.greyBtn {
-    background: #ddd;
-    border: 1px #bbb solid;
+.btn {
     display: block;
     width: auto;
     float: left;
-    color: #333;
     padding: 3px 5px;
     text-decoration: none;
+    margin-right: 5px;
+}
+
+.btn.greyBtn {
+    background: #ddd;
+    border: 1px #bbb solid;
+    color: #333;
 }
 
 .topmenu {
@@ -36,3 +40,58 @@
     background: #bbb;
 }
 .topmenu .item.active { font-weight: bold; }
+
+.custviewrow td { cursor: pointer; }
+
+/* Template */
+.NotesContainer {
+    width: 95%;
+    height: auto;
+    clear: both;
+    margin: 0 auto;
+}
+
+.NoteItem {
+    float: left;
+    width: 24%;
+    border: 1px #999 solid;
+    margin-right: 1%;
+    background: #f0f0f0;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.NoteTitle {
+    display: block;
+    background: #333;
+    padding: 10px 0;
+    text-align: center;
+    color: #eee;
+    position: relative;
+}
+
+.NoteTitle .deleteBtn {
+    display: block;
+    right: 0;
+    position: absolute;
+    left: auto;
+    margin-right: 5px;
+    color: #ff0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.NoteTitle .Title {
+    display: block;
+    font-size: 16px;
+}
+
+.NoteTitle .Datestamp {
+    display: block;
+    font-size: 12px;
+}
+
+.NoteContent {
+    display: block;
+    margin: 5px;
+}

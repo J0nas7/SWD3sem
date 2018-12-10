@@ -17,7 +17,11 @@ public interface IContactService {
 
     // Notes implementation
     void createNote(Note n) throws SQLException;
+    Note readNote(int NoteListIndex);
+    List readCustNotes(int CustomerID);
+    int readCustNotesSize(int CustomerID);
     void editNote(Note n) throws SQLException;
+    int deleteNote(int NoteID) throws SQLException;
 
 
 }

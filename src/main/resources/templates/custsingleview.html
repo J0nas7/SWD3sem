@@ -7,5 +7,6 @@
     <a href="/" class="btn greyBtn">&laquo; Alle kunder</a>
     <h1 style="clear: both;" th:text="${'Kundeside: ' + customer.FirstName + ' ' + customer.LastName}"></h1>
     <a th:href="${'/newnote/' + customer.Id}" class="btn greyBtn">+ Ny note</a>
+    <a th:href="${'/readnotes/' + customer.Id}" class="btn greyBtn" th:text="${'Noter (' + numNotes + ')'}" th:style="${'display: ' + (numNotes > 0 ? 'block' : 'none') + ';'}"></a>
 </body>
 </html>

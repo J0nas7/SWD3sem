@@ -114,6 +114,33 @@ public class ContactServiceImpl implements IContactService {
         this.notesList.add(n);
     }
 
+    @Override // Itterates through the ArrayList notesList and finds them that matches with the given CustomerID. Adds the matches to an ArrayList tempList and returns that
+    public List readCustNotes(int CustomerID) {
+        List<Note> tempList = new ArrayList<>();
+        for (Note n: this.notesList) {
+            if (n.getNote_Customer_fk() == CustomerID && n.getNote_Status() == 1) {
+                tempList.add(n);
+            }
+        }
+        return tempList;
+    }
+
+    @Override // Itterates through the ArrayList notesList and finds them that matches with the given CustomerID. Adds the matches to an ArrayList tempList and returns the size of that
+    public int readCustNotesSize(int CustomerID) {
+        List<Note> tempList = new ArrayList<>();
+        for (Note n: this.notesList) {
+            if (n.getNote_Customer_fk() == CustomerID && n.getNote_Status() == 1) {
+                tempList.add(n);
+            }
+        }
+        return tempList.size();
+    }
+
+    @Override
+    public Note readNote(int NoteListIndex) {
+        return this.notesList.get(NoteListIndex-1);
+    }
+
     @Override
     public void editNote(Note n) throws SQLException {
         //Note tempNote = notesList.get(n.getNote_AL_index()-1);
@@ -128,5 +155,21 @@ public class ContactServiceImpl implements IContactService {
         pStatement.setInt(5, n.getNote_Status());
         pStatement.setInt(6, n.getNote_ID());
         DBconn.statementUpdate(pStatement);
+    }
+
+    @Override
+    public int deleteNote(int Note_AL_index) throws SQLException {
+        Note n = this.notesList.get(Note_AL_index-1);
+        n.setNote_Status(0);
+        this.notesList.set(Note_AL_index-1, n);
+
+        // Don't delete the row, we just "deactivate" it
+        String deleteSql = "UPDATE "+DBconn.DBprefix+"Notes SET Note_Status=? WHERE Note_ID=?";
+        PreparedStatement pStatement = DBconn.DBconnect.prepareStatement(deleteSql);
+        pStatement.setInt(1, n.getNote_Status());
+        pStatement.setInt(2, n.getNote_ID());
+        DBconn.statementUpdate(pStatement);
+
+        return n.getNote_Customer_fk();
     }
 }

@@ -70,15 +70,24 @@
     position: relative;
 }
 
-.NoteTitle .deleteBtn {
+.NoteTitle .crudBtns {
     display: block;
-    right: 0;
     position: absolute;
-    left: auto;
-    margin-right: 5px;
     color: #ff0;
     font-weight: bold;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.NoteTitle .editBtn {
+    left: auto;
+    margin-left: 5px;
+}
+
+.NoteTitle .deleteBtn {
+    right: 0;
+    left: auto;
+    margin-right: 5px;
 }
 
 .NoteTitle .Title {

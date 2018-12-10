@@ -10,7 +10,8 @@
     <div class="NotesContainer">
         <div class="NoteItem" th:each="note: ${custNotes}" th:id="${note.Note_AL_index}">
             <span class="NoteTitle">
-                <span class="deleteBtn" onclick="javascript: deleteNote(this);">x</span>
+                <a th:href="${'/editnote/' + note.Note_AL_index}" class="crudBtns editBtn">&#9998;</a>
+                <span class="crudBtns deleteBtn" onclick="javascript: deleteNote(this);">x</span>
                 <span class="Title" th:text="${note.Note_Subject}"></span>
                 <span class="Datestamp" th:text="${note.Note_Timestamp}"></span>
             </span>

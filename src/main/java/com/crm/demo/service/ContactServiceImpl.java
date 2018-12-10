@@ -143,17 +143,13 @@ public class ContactServiceImpl implements IContactService {
 
     @Override
     public void editNote(Note n) throws SQLException {
-        //Note tempNote = notesList.get(n.getNote_AL_index()-1);
         this.notesList.set(n.getNote_AL_index()-1, n);
 
-        String updateSql = "UPDATE "+DBconn.DBprefix+"Notes SET Note_Subject=?, Note_Content=?, Note_Customer_fk=?, Note_Timestamp=?, Note_Status=? WHERE Note_ID=?";
+        String updateSql = "UPDATE "+DBconn.DBprefix+"Notes SET Note_Subject=?, Note_Content=? WHERE Note_ID=?";
         PreparedStatement pStatement = DBconn.DBconnect.prepareStatement(updateSql);
         pStatement.setString(1, n.getNote_Subject());
         pStatement.setString(2, n.getNote_Content());
-        pStatement.setInt(3, n.getNote_Customer_fk());
-        pStatement.setString(4, n.getNote_Timestamp());
-        pStatement.setInt(5, n.getNote_Status());
-        pStatement.setInt(6, n.getNote_ID());
+        pStatement.setInt(3, n.getNote_ID());
         DBconn.statementUpdate(pStatement);
     }
 

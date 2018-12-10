@@ -86,6 +86,25 @@ public class CRMXController {
         return UserInfoCheck("/readnotes");
     }
 
+    @GetMapping("/editnote/{noteAL}")
+    public String editnote(@PathVariable("noteAL") int noteAL, Model model) {
+        Note theNote = contactService.readNote(noteAL);
+        model.addAttribute("customer", contactService.fetchOneContact(theNote.getNote_Customer_fk()));
+        model.addAttribute("theNote", theNote);
+        return UserInfoCheck("/editnote");
+    }
+
+    @PostMapping("/editnote/{noteAL}")
+    public String editnote_save(@PathVariable("noteAL") int noteAL, @ModelAttribute Note note, Model model) throws SQLException {
+        Note theNote = contactService.readNote(noteAL);
+        if (UserInfo.isLoggedIn) {
+            theNote.setNote_Subject(note.getNote_Subject());
+            theNote.setNote_Content(note.getNote_Content());
+            contactService.editNote(theNote);
+        }
+        return "redirect:/readnotes/"+theNote.getNote_Customer_fk();
+    }
+
     @GetMapping("/deletenote/{Note_AL_index}")
     public String deleteNote(@PathVariable("Note_AL_index") int Note_AL_index) throws SQLException {
         int CustomerId = 0;
